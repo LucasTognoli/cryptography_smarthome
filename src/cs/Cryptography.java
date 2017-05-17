@@ -51,7 +51,6 @@ public class Cryptography {
 //		int key_at = (int)key.charAt(char_index%128);
 //		line = (char_index * key_at)%128;
 //		return line;
-
 		return char_index%128;
 	}
 
@@ -62,11 +61,9 @@ public class Cryptography {
 //		int line = index_line(key, char_index);
 //		char cipher = (char)sub_matrix[line][column];
 //		return cipher;
-
 		// Simple code
 		int line = char_index%128;
 		int column = (int)message - 32;
-
 
 		char cipher = sub_matrix[line][column];
 		return cipher;
@@ -103,7 +100,6 @@ public class Cryptography {
 	}
 
 	public static void encrypt(String public_key, File input_file, File output_folder) throws IOException{
-
 
 		buildMatrix(public_key);
 
