@@ -1,0 +1,26 @@
+JFLAGS = -g
+JC = javac
+SRC = ./src/cs
+BIN = ./bin/cs
+EXE = cs.criptografia
+RM = rm -rf
+
+CLASSES = Tutorial.java \
+				criptografia.java
+
+LIST = $(addprefix $(BIN)/, $(CLASSES:.java=.class))
+
+default: $(BIN) $(LIST)
+
+$(BIN):
+	mkdir -p $(BIN)
+
+$(BIN)/%.class: $(SRC)/%.java
+	$(JC) $(JFLAGS) -d $(BIN) $<
+
+.PHONY: clean run
+clean:
+	$(RM) $(BIN)
+
+run:
+	cd $(BIN); java $(EXE)
