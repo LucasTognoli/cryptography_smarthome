@@ -38,32 +38,25 @@ public class Cryptography {
 	}
 
 	private static int index_column(String key, char message, int char_index){
-//		int column;
-//		int mes = (int)message;
-//		int key_at = (int)key.charAt(char_index%128);
-//		column = mes ^ key_at;
-//		return column;
-		return (int)(message)-32;
+		int column;
+		int mes = (int)message;
+		int key_at = (int)key.charAt(char_index%128);
+		column = mes ^ key_at;
+		return column;
 	}
 
 	private static int index_line(String key, int char_index){
-//		int line;
-//		int key_at = (int)key.charAt(char_index%128);
-//		line = (char_index * key_at)%128;
-//		return line;
-		return char_index%128;
+		int line;
+		int key_at = (int)key.charAt(char_index%128);
+		line = (char_index * key_at)%128;
+		return line;
+
 	}
 
 	protected static char encChar(String key, int char_index, char message){
 
-		// Initial code
-//		int column = index_column(key, message, char_index);
-//		int line = index_line(key, char_index);
-//		char cipher = (char)sub_matrix[line][column];
-//		return cipher;
-		// Simple code
-		int line = char_index%128;
-		int column = (int)message - 32;
+		int column = index_column(key, message, char_index);
+		int line = index_line(key, char_index);
 
 		char cipher = sub_matrix[line][column];
 		return cipher;
@@ -74,9 +67,8 @@ public class Cryptography {
 
 		int line = index_line(key, char_index);
 
-		//int key_at = (int)key.charAt(char_index%128);
+		int key_at = (int)key.charAt(char_index%128);
 		int column = -1;
-		int aux = -1;
 
 		//find which column has Cn
 		for (int j = 0; j < 223; j++){
@@ -86,10 +78,8 @@ public class Cryptography {
 		}
 
 		if (column > -1){
-			//int message_ascii = column ^ key_at;
-			//messageAtN = (char)message_ascii;
-			aux = column + 32;
-			messageAtN = (char)aux;
+			int message_ascii = column ^ key_at;
+			messageAtN = (char)message_ascii;
 		}
 		else{
 			System.out.println("Caracter nao encontrado. Indice: ");
